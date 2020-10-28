@@ -1,0 +1,11 @@
+version: "3.8"
+services:
+  dbt:
+    build: dbt/.
+    volumes:
+      - ./dbt/:/usr/app/dbt
+    environment:
+      - DBT_PROFILES_DIR=/usr/app/dbt
+    working_dir: /usr/app/dbt
+    tty: true
+

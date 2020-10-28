@@ -1,0 +1,48 @@
+
+name: 'dwelo'
+version: '1.0.0'
+
+config-version: 2
+
+profile: 'default'
+
+source-paths: ["models"]
+analysis-paths: ["analysis"] 
+test-paths: ["tests"]
+data-paths: ["data"]
+macro-paths: ["macros"]
+
+target-path: "target"
+clean-targets:
+    - "target"
+    - "dbt_modules"
+
+
+# Configuring models
+# Full documentation: https://docs.getdbt.com/docs/configuring-models
+
+models:
+    dwelo:
+        staging:
+            stg_commands:
+                +tags:
+                    - part_one
+            stg_command_actives:
+                +tags:
+                    - part_one
+            stg_command_results:
+                +tags:
+                    - part_one
+            stg_users:
+                +tags:
+                    - part_two
+        marts:
+            fct_command_statuses:
+                +tags:
+                    - part_one
+            dim_users:
+                +tags:
+                    - part_two
+            met_daily_command_count_by_username:
+                +tags:
+                    - part_two

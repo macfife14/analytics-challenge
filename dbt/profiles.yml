@@ -1,0 +1,16 @@
+
+default:
+  target: dev
+
+
+  outputs:
+    dev:
+      type: bigquery
+      method: oauth
+      project: analytics-interview
+      dataset: "{{ env_var('DBT_DATASET') }}"
+      threads: 4
+      timeout_seconds: 300
+      location: US
+      priority: interactive
+      retries: 1

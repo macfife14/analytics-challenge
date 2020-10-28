@@ -1,0 +1,112 @@
+version: 2
+
+models:
+  - name: fct_command_statuses
+    description: "Command Statuses"
+    columns:
+      - name: command_uuid
+        description: "Command Unique Identifier"
+        tests:
+          - not_null
+          - unique
+      - name: command_client
+        description: "Command Client"
+      - name: command
+        description: "Command"
+      - name: _raw_desired_state
+        description: "Raw Desired State"
+      - name: user_id
+        description: "User ID associated with the command"
+      - name: device_id
+        description: "Device ID associated with the command"
+      - name: thermostat_set_point
+        description: "Thermostat set point"
+      - name: thermostat_mode
+        description: "Thermostat Mode"
+      - name: slot
+        description: "Slot"
+      - name: pin
+        description: "Pin"
+      - name: switch_state
+        description: "state of the switch"
+      - name: dimmer_state
+        description: "state of the dimmer"
+      - name: dimmer_level
+        description: "dimmer level"
+      - name: lock_state
+        description: "lock state"
+      - name: command_timestamp
+        description: "Timestamp produced by the cloudapi when the command was written to Twilio Sync"
+      - name: active_timestamp
+        description: "Timestamp produced by the hub when the hub picked up the command from Twilio Sync (MQTT)"
+      - name: result_timestamp
+        description: "Timestamp written by the hub the hub dispatched the over zwave"
+      - name: command_active_node_id
+        description: "Command Active Node ID"
+      - name: command_result_node_id
+        description: "Command Result Node ID"
+      - name: is_hub_success
+        description: "Boolean for whether CommandResult is True"
+      - name: has_hub_response
+        description: "Boolean for whether the command has a CommandResult response from the hub"
+      - name: command_update_timestamp
+        description: "Timestamp produced by Twilio Sync when the Command was written to Sync Map"
+      - name: active_update_timestamp
+        description: "Timestamp produced by Twilio Sync when the CommandActive was written to Sync Map"
+      - name: result_update_timestamp
+        description: "Timestamp produced by Twilio Sync when the CommandResult was written to the device Sync Map "
+      - name: command_origin
+        description: "Class of the entity within CloudAPI that produced the command. For example: ActivatedCommunitySchedules"
+      - name: command_origin_id
+        description: "CloudAPI database uid for the db entity that produced this command."
+      - name: _command_uid
+        description: "Command Unique Identifier"
+      - name: _command_active_uid
+        description: "Active Command Unique Identifier"
+      - name: _command_result_uid
+        description: "Result Command Unique Identifier"
+
+  - name: dim_users
+    description: "Users"
+    columns:
+      - name: user_id
+        description: "The user id"
+        tests:
+          - not_null
+          - unique
+      - name: username
+        description: "The user's username"
+        tests:
+          - not_null
+          - unique
+      - name: date_registered
+        description: "Timestamp when a user first registered an account"
+        tests:
+          - not_null
+      - name: last_modified
+        description: "Timestamp when the user record was last modified"
+        tests:
+          - not_null
+
+  - name: met_daily_command_count_by_username
+    description: "Metric table counting commands issued daily by user_id"
+    columns:
+      - name: username
+        description: "The username that issued the commands"
+        tests:
+          - not_null
+          - unique
+      - name: number_of_commands
+        description: "The total number of commands issued by the username on the timestamp_date"
+        tests:
+          - not_null
+      - name: number_of_successful_commands
+        description: "The number of commands issued by the username on the timestamp_date for which is_hub_success is True"
+        tests:
+          - not null
+      - name: timestamp_date
+        description: "Timestamp at the start of the day for which we've counted commands"
+        tests:
+          - not_null
+
+
