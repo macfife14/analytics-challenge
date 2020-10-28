@@ -1,6 +1,6 @@
-#Analytics Engineer Take Home Exercise
+# Analytics Engineer Take Home Exercise
 
-##Introduction
+## Introduction
 This is a take home assignment for applicants to the Analytics Engineer position at Dwelo. The goal is for our team to
 get a sense of your approach when wrangling tabular data in SQL. Hopefully this will be a worthwhile investment of your time by 
 allowing you some freedom to experiment with a piece of a modern data stack. 
@@ -8,7 +8,7 @@ allowing you some freedom to experiment with a piece of a modern data stack.
 The expectation is that after satisfying the prerequisites outlined below this exercise will take between 2 and 4 hours 
 depending on your familiarity with [BigQuery](https://cloud.google.com/bigquery), [dbt](https://getdbt.com), and SQL
 
-###Prerequisites
+### Prerequisites
 You'll need Docker, a Google Account, and a Github account 
 * Docker (https://docs.docker.com/get-docker/)
 * Google (https://google.com)
@@ -25,7 +25,7 @@ Access to these Datasets should have been provided ahead of reading this readme,
 [Sam Peck](mailto:speck@dwelo.com) If you have access they will show up in the [BigQuery UI](https://cloud.google.com/bigquery/docs/quickstarts/quickstart-web-ui) 
 when you navigate to the above link. 
 
-###BigQuery and dbt docs
+### BigQuery and dbt docs
 You'll be using dbt (https://docs.getdbt.com/) to query and manipulate data in Google BigQuery (https://cloud.google.com/bigquery/docs)
 dbt will also be used throughout this exercise to create and then validate the schema of the queries (models) you define and the data 
 they produce
@@ -37,7 +37,7 @@ mechanism through which you invoke dbt functionality.
 
 If this is your first exposure to dbt you'll probably wanna keep these dbt docs close by as you work through this exercise.
 
-###What's a sync event?
+### What's a sync event?
 If you browse the dataset `analytics-interview.interview_source` you'll notice there's a table called 
 `raw_sync_events`. In an effort to give you a taste of the type of work you'd be doing in this role at Dwelo you'll be 
 playing with real data from Dwelo's production systems (sampled and anonymized from internal test accounts). 
@@ -49,7 +49,7 @@ described by Greg as they arrive in our BigQuery data warehouse.
 The linked post is the most relevant for getting the surrounding context for the telemetry you'll be manipulating in this exercise. 
 If you're someone who thrives on getting the surrounding context the other posts in the "Sync" series are recommended reading. 
 
-###Launching your Docker container and running dbt for the first time
+### Launching your Docker container and running dbt for the first time
 Now that you've got some background let's get started:
    1. Clone your forked repo
    2. Create a git branch for your changes
@@ -63,7 +63,7 @@ Now that you've got some background let's get started:
    
 You should expect some errors and failures on the first run of `dbt test`, part of this exercise will be getting all these tests passing! 
 
-##The Challenge
+## The Challenge
 It's a tale as old as data...on the one hand we have raw telemetry and on the other data consumers who really want to answer some basic
 questions. Since this is a real world example these raw data are provided to you partially parsed, with duplicates, and some 
 data type inconsistencies. You've already gotten a taste of the primary tools which will be aiding you in your quest `dbt test` 
@@ -73,7 +73,7 @@ This challenge is broken into three parts. "Bonus" items are just that--they are
 they are associated with. If you're running low on time please skip over them--it's more important that we see your work on the next
 section.
 
-###Part One
+### Part One
 The first part of this challenge involves a typical task you may handle as an Analytics Engineer at Dwelo. The data from `raw_sync_events`
 has been staged using the views (dbt models) defined in the folder `dbt/models/staging/`. Your task is to update the queries to
  1. parse a few more fields
@@ -109,7 +109,7 @@ table names with calls to `ref` or `source` functions
 model. Here are some helpful tips on [writing helpful git commit messages](https://chris.beams.io/posts/git-commit/)
 * Bonus: Can you consolidate SQL that is duplicated across models?
 
-###Part Two
+### Part Two
 Building off your success in Part One, in this next part of the challenge you'll be staging `raw_users` in `dbt/models/staging` 
 before producing the final models in `dbt/marts/`.
 
@@ -125,7 +125,7 @@ when running:
 * You're gonna run into some data type issues here
 * Bonus: Can your `met_daily_command_by_username` produce a timeseries without date gaps? 
 
-###Part Three
+### Part Three
 Congrats, you've made it Part Three! Hopefully by now you're getting comfortable with wrangling queries and using tests (both manual
 and those orchestrated by dbt) to validate your results. 
 
@@ -169,7 +169,7 @@ Finally, if you run into a wall or just need something clarified please reach ou
 a big part of working together. The open nature of this final challenge is intentional--we love to ponder and reflect at Dwelo and
 we look forward to reflecting on this challenge with you. 
 
-##Submitting Your Work
+## Submitting Your Work
 Once you're ready to submit your work, ensure that you've committed and pushed all the changes to your working branch to github.
 
 Open a PR against your forked repo and invite https://github.com/specktastic as a reviewer.
