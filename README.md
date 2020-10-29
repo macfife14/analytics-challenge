@@ -22,15 +22,15 @@ Google Cloud Project
 * `dev_[your_name]` (the destination dataset for the various views you'll be creating)
 
 Access to these Datasets should have been provided ahead of reading this readme, but if something is amiss reach out to 
-[Sam Peck](mailto:speck@dwelo.com) If you have access they will show up in the [BigQuery UI](https://cloud.google.com/bigquery/docs/quickstarts/quickstart-web-ui) 
-when you navigate to the above link. 
+[Sam Peck](mailto:speck@dwelo.com) (If you have access they will show up in the [BigQuery UI](https://cloud.google.com/bigquery/docs/quickstarts/quickstart-web-ui) 
+when you navigate to the above link.)
 
 ### BigQuery and dbt docs
 You'll be using dbt (https://docs.getdbt.com/) to query and manipulate data in Google BigQuery (https://cloud.google.com/bigquery/docs)
 dbt will also be used throughout this exercise to create and then validate the schema of the queries (models) you define and the data 
-they produce
+they produce.
 
-Beyond a general understanding of dbt, the docs for these two commands are important since you'll they'll be the primary 
+Beyond a general understanding of dbt, the docs for these two commands are important since these commands will be the primary 
 mechanism through which you invoke dbt functionality. 
 * `dbt test` (https://docs.getdbt.com/reference/commands/test)
 * `dbt run` (https://docs.getdbt.com/reference/commands/run)
@@ -75,7 +75,7 @@ section.
 
 ### Part One
 The first part of this challenge involves a typical task you may handle as an Analytics Engineer at Dwelo. The data from `raw_sync_events`
-has been staged using the views (dbt models) defined in the folder `dbt/models/staging/`. Your task is to update the queries to
+has been staged using the views (dbt models) defined in the folder `dbt/models/staging/`. Your task is to update the queries to:
  1. parse a few more fields
  2. deduplicate the events
  3. provide the SQL for `fct_command_statuses` which will reflect the outcome of each command among other data points
@@ -165,11 +165,11 @@ in the command staging models
 How will this change your approach? 
 * The `ItemData` description in `dbt/models/staging/schema.yml` contains invaluable context for the task of matching commands to readings
 
-Finally, if you run into a wall or just need something clarified please reach out with questions. Your questions are a going to be
+Finally, if you run into a wall or just need something clarified please reach out with questions. Your questions are going to be
 a big part of working together. The open nature of this final challenge is intentional--we love to ponder and reflect at Dwelo and
 we look forward to reflecting on this challenge with you. 
 
 ## Submitting Your Work
-Once you're ready to submit your work, ensure that you've committed and pushed all the changes to your working branch to github.
+Once you're ready to submit your work, ensure that you've committed all the changes on your working branch and pushed it to Github.
 
-Open a PR against your forked repo and invite https://github.com/specktastic as a reviewer.
+Finally, open a PR against your forked repo and invite https://github.com/specktastic as a reviewer.
