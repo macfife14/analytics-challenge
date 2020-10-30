@@ -5,46 +5,44 @@ models:
     description: "Command Statuses"
     columns:
       - name: command_uuid
-        description: "Command Unique Identifier"
+        description: "A unique identifier of a command. The primary key for this table"
         tests:
           - not_null
           - unique
       - name: command_client
-        description: "Command Client"
-      - name: command
-        description: "Command"
-      - name: _raw_desired_state
-        description: "Raw Desired State"
-      - name: user_id
-        description: "User ID associated with the command"
-      - name: device_id
-        description: "Device ID associated with the command"
-      - name: thermostat_set_point
-        description: "Thermostat set point"
+        description: "The type of client that issued this command"
+      - name: thermostat_heat_set_point
+        description: "The Heat Set Point specified by this command for the targeted thermostat. Provided as an integer or float value indicating the Set Point in degrees-F vs. C is not provided"
+      - name: thermostat_cool_set_point
+        description: "The Cool Set Point specified by this command for the targeted thermostat Provided as an integer or float value indicating the Set Point in degrees-F vs. C is not provided"
       - name: thermostat_mode
-        description: "Thermostat Mode"
+        description: "The Mode (Off/Cool/Heat/Auto) specified by this command for the targeted thermostat"
       - name: slot
-        description: "Slot"
+        description: "The Slot on the lock under which the `Pin` (used to open the lock) is stored"
       - name: pin
-        description: "Pin"
+        description: "The Pin to be stored in the provided Slot"
       - name: switch_state
-        description: "state of the switch"
+        description: "The Switch State (on/off) specified by this command for the targeted light switch"
       - name: dimmer_state
-        description: "state of the dimmer"
+        description: "The Switch State (on/off) specified by this command for the targeted dimmer switch"
       - name: dimmer_level
-        description: "dimmer level"
+        description: "An integer value provided when a Dimmer State is specified as On indicating the targeted percentage of the dimmer level"
       - name: lock_state
-        description: "lock state"
+        description: "The Lock State (locked/unlocked) specified by this command for the targeted door lock"
+      - name: user_id
+        description: "The user_id of the user that issued this command"
+        tests:
+          - not_null
       - name: command_timestamp
         description: "Timestamp produced by the cloudapi when the command was written to Twilio Sync"
       - name: active_timestamp
         description: "Timestamp produced by the hub when the hub picked up the command from Twilio Sync (MQTT)"
       - name: result_timestamp
-        description: "Timestamp written by the hub the hub dispatched the over zwave"
+        description: "Timestamp written by the hub after dispatched over zwave was attempted for this command"
       - name: command_active_node_id
-        description: "Command Active Node ID"
+        description: "The node id on the hub to which the command was planned to be dispatched"
       - name: command_result_node_id
-        description: "Command Result Node ID"
+        description: "The node id on the hub to which the command was dispatched"
       - name: is_hub_success
         description: "Boolean for whether CommandResult is True"
       - name: has_hub_response
@@ -65,6 +63,10 @@ models:
         description: "Active Command Unique Identifier"
       - name: _command_result_uid
         description: "Result Command Unique Identifier"
+      - name: _raw_command_desired_state
+        description: "The raw JSON of the command"
+        tests:
+          - not_null
 
   - name: dim_users
     description: "Users"
