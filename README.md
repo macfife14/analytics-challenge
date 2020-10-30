@@ -10,8 +10,8 @@ depending on your familiarity with [BigQuery](https://cloud.google.com/bigquery)
 
 ### Prerequisites
 You'll need Docker, a Google Account, and a Github account 
-* Docker (https://docs.docker.com/get-docker/)
-* Google (https://google.com)
+* [Docker](https://docs.docker.com/get-docker/)
+* [Google](https://google.com)
 * Create a Github account if you don't already have one and [fork this repo into your own space](
 https://help.github.com/en/github/getting-started-with-github/fork-a-repo#fork-an-example-repository)
 
@@ -32,8 +32,8 @@ they produce.
 
 Beyond a general understanding of dbt, the docs for these two commands are important since these commands will be the primary 
 mechanism through which you invoke dbt functionality. 
-* `dbt test` (https://docs.getdbt.com/reference/commands/test)
-* `dbt run` (https://docs.getdbt.com/reference/commands/run)
+* `dbt test` [docs](https://docs.getdbt.com/reference/commands/test)
+* `dbt run` [docs](https://docs.getdbt.com/reference/commands/run)
 
 If this is your first exposure to dbt you'll probably wanna keep these dbt docs close by as you work through this exercise.
 
@@ -57,8 +57,8 @@ Now that you've got some background let's get started:
    at the correct destination) 
    4. Once the docker container is built and launched you'll be prompted to authorize your cli session with Google Cloud. 
    _(during this step you may see `WARNING: Cannot find a quota project to add to ADC` which can be ignored)_
-   5. 🐳:/usr/app/dbt# `dbt run` (this will create the views which have already been defined in the dbt/models folder of this repo)
-   6. 🐳:/usr/app/dbt# `dbt test` (this will run the [schema tests](https://docs.getdbt.com/docs/building-a-dbt-project/tests/#schema-tests) 
+   5. `dbt run` (this will create the views which have already been defined in the dbt/models folder of this repo)
+   6. `dbt test` (this will run the [schema tests](https://docs.getdbt.com/docs/building-a-dbt-project/tests/#schema-tests) 
    defined in the schema.yml files, and the [sql tests](https://docs.getdbt.com/docs/building-a-dbt-project/tests/#data-tests) in dbt/tests) 
    
 You should expect some errors and failures on the first run of `dbt test`, part of this exercise will be getting all these tests passing! 
