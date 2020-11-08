@@ -55,30 +55,30 @@ with column_renames as (
     end as user_id
     
    
-   /* ,case when item_key in ('Command') then
+   ,case when item_key in ('Command') then
       JSON_EXTRACT_SCALAR(item_data, '$.origin')
       else null
-     end as command_origin*/
+     end as command_origin
      
-   /* ,case when item_key in ('Command') then
+   ,case when item_key in ('Command') then
       JSON_EXTRACT_SCALAR(item_data, '$.origin_id')
       else null
-     end as command_origin_id*/
+     end as command_origin_id
 
-   /* ,case when item_key in ('CommandResult') then
+   ,case when item_key in ('CommandResult') then
       JSON_EXTRACT_SCALAR(item_data, '$.result')
       else null
-    end as command_result*/
+    end as command_result
     
-    /*,case when item_key in ('CommandResult') then
+    ,case when item_key in ('CommandResult') then
       JSON_EXTRACT_SCALAR(item_data, '$.failure_string')
       else null
-    end as command_failure_string*/
+    end as command_failure_string
 
-   /* ,case when item_key in ('CommandActive', 'CommandResult') then
+   ,case when item_key in ('CommandActive', 'CommandResult') then
       JSON_EXTRACT_SCALAR(item_data, '$.node_id')
       else null
-    end as command_node_id*/
+    end as command_node_id
 
 
     -- NEW COLUMNS PARSING `$.desired_state` from item_data CAN BE ADDED HERE --
