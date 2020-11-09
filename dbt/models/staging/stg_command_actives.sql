@@ -12,7 +12,7 @@ with column_renames as (
     ,_source_file
     ,concat(MapUniqueName, '_', MapRevision, '_', STRING(DateCreated)) as _uid
   from
-    {{ source('interview_source', 'raw_sync_events') }}
+    interview_source.raw_sync_events
 )
 ,extract_event_values as (
   select
@@ -77,7 +77,7 @@ with column_renames as (
     column_renames
 )
 ,final as (
-    select
+    select distinct
       command_uuid
       ,command_node_id
 
@@ -85,7 +85,7 @@ with column_renames as (
       ,event_timestamp
       ,device_id
 
-      ,_uid
+     -- ,_uid
       ,_source_file
     from
       extract_event_values
