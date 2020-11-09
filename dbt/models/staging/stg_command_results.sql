@@ -101,6 +101,6 @@ with column_renames as (
     and command_uuid is not null
     and update_timestamp is not null
    
-
+)
 select *
 from final
