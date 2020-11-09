@@ -71,6 +71,11 @@ with column_renames as (
       end
       else null
     end as command_uuid
+    
+   ,case when item_key in ('CommandResult') AND JSON_EXTRACT_SCALAR(item_data, '$.result') in ('true','success') THEN 1
+          WHEN JSON_EXTRACT_SCALAR(item_data, '$.result') = 'false' THEN 0
+          ELSE NULL
+          END as is_hub_success
 
   from
     column_renames
@@ -82,9 +87,7 @@ with column_renames as (
 
     ,command_failure_string
     ,command_node_id
-    ,CASE WHEN command_result in ('true','success') THEN 1
-          ELSE 0
-          END as is_hub_success
+    ,is_hub_success
     ,update_timestamp
     ,event_timestamp
    -- ,event_uuid
@@ -97,6 +100,8 @@ with column_renames as (
   where
     item_key = 'CommandResult'
     and command_uuid is not null
+    and update_timestamp is not null
+    and is_hub_success is not null
 )
 
 select *
