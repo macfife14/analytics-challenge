@@ -12,7 +12,7 @@ with column_renames as (
     ,_source_file
     ,concat(MapUniqueName, '_', MapRevision, '_', STRING(DateCreated)) as _uid
   from
-    {{ source('interview_source', 'raw_sync_events') }}
+    interview_source.raw_sync_events
 )
 ,extract_event_values as (
   select
@@ -77,17 +77,20 @@ with column_renames as (
 )
 ,final as (
   select
+  distinct
     command_uuid
 
     ,command_failure_string
     ,command_node_id
-
+    ,CASE WHEN command_result in ('true','success') THEN 1
+          ELSE 0
+          END as is_hub_success
     ,update_timestamp
     ,event_timestamp
-    ,event_uuid
+   -- ,event_uuid
     ,device_id
 
-    ,_uid
+    --,_uid
     ,_source_file
   from
     extract_event_values
