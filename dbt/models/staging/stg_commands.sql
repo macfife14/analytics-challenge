@@ -156,6 +156,10 @@ with column_renames as (
   where
     item_key = 'Command'
     and command_uuid is not null
+    and user_id is not null
+    and update_timestamp is not null
+    and device_id is not null
+    and _raw_command_desired_state is not null
 )
 
 select *
