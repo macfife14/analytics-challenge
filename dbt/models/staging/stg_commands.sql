@@ -106,9 +106,6 @@ with column_renames as (
           ELSE NULL
           END AS thermostat_mode
           
-    ,case when JSON_EXTRACT_SCALAR(item_data, '$.desired_state[0]') = 'Temperature' THEN JSON_EXTRACT_SCALAR(item_data, '$.desired_state[1]')
-          ELSE NULL
-          END AS thermostat_mode
     
     
  -- PIN --
@@ -134,8 +131,26 @@ with column_renames as (
     column_renames
 )
 ,final as (
-  select
-    *
+  select distinct
+   command_uuid
+  ,command_client
+  ,thermostat_heat_set_point
+  ,thermostat_cool_set_point
+  ,thermostat_mode
+  ,slot
+  ,pin
+  ,switch_state
+  ,dimmer_state
+  ,dimmer_level
+  ,lock_state
+  ,user_id
+  ,update_timestamp
+  ,event_timestamp
+  ,device_id
+  ,_raw_command_desired_state
+  ,_uid
+  ,_source_file
+    
   from
     extract_event_values
   where
